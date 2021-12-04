@@ -2,6 +2,7 @@ package com.autumnsun.birtutamhaber.di
 
 import android.content.Context
 import com.autumnsun.birtutamhaber.data.remote.NewsApi
+import com.autumnsun.birtutamhaber.ui.detail.DetailRepository
 import com.autumnsun.birtutamhaber.ui.home.HomeRepository
 import com.autumnsun.birtutamhaber.utils.Constants.BASE_URL
 import com.chuckerteam.chucker.api.ChuckerCollector
@@ -63,34 +64,10 @@ object AppModule {
         return HomeRepository(newsApi)
     }
 
-
-/*    @Singleton
-    @Provides
-    fun provideTabuDatabase(
-        @ApplicationContext context: Context
-    ): TabuDataBase = Room.databaseBuilder(
-        context,
-        TabuDataBase::class.java,
-        "note_db"
-    ).fallbackToDestructiveMigration().build()
-
     @Singleton
     @Provides
-    fun provideTabuDao(
-        tabuDb: TabuDataBase
-    ) = tabuDb.getTabuDao()
+    fun provideDetailNewsRepo(newsApi: NewsApi): DetailRepository {
+        return DetailRepository(newsApi)
+    }
 
-    @Singleton
-    @Provides
-    fun provideTabuRepo(
-        @ApplicationContext context: Context,
-        tabuDao: TabuDao,
-        gson: Gson
-    ): TabuRepo {
-        return TabuRepository(
-            context,
-            tabuDao,
-            gson
-        )
-    }*/
 }

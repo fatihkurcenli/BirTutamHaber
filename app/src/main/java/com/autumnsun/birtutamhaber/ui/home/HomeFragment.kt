@@ -3,11 +3,11 @@ package com.autumnsun.birtutamhaber.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDeepLinkBuilder
 import com.autumnsun.birtutamhaber.R
 import com.autumnsun.birtutamhaber.data.remote.model.RemoteData
 import com.autumnsun.birtutamhaber.databinding.FragmentHomeBinding
 import com.autumnsun.birtutamhaber.ui.BaseFragment
-import dagger.hilt.android.AndroidEntryPoint
 
 
 class HomeFragment : BaseFragment(R.layout.fragment_home) {
@@ -20,39 +20,41 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
 
-        /*     binding.fragmentSend.setOnClickListener {
-                 mainActivity.navController.navigate(R.id.action_homeFragment_to_detailFragment)
-             }*/
-
-/*        val epoxyController = HomeEpoxyController { attractionId ->
-            activityViewModel.onAttractionSelected(attractionId)
-            navController.navigate(R.id.action_homeFragment_to_attractionDetailFragment)
-        }*/
         val epoxyController = HomeEpoxyController(requireActivity()) { safeArgSendDataDetail ->
-            val navDirectionAction =
-                HomeFragmentDirections.actionHomeFragmentToDetailFragment(safeArgSendDataDetail)
-            navController.navigate(navDirectionAction)
-/*            *//*     val action =
-                     HomeFragmentDirections.actionHomeFragmentToDetailFragment(")*//*
-            navController.navigate(action)
-            *//*           navController.navigate(
-                           R.id.action_homeFragment_to_detailFragment,
-                           safeArgSendDataDetail
-                       )*/
+            //TODO If you are using safe args open this
+            /*        val navDirectionAction =
+                        HomeFragmentDirections.actionHomeFragmentToDetailFragment(safeArgSendDataDetail)
+                    navController.navigate(navDirectionAction)*/
+            //TODO If you want deep link send use this commands!!
+            /*    val args = Bundle()
+                args.putSerializable(NEWS_ID, 3)
+                NavDeepLinkBuilder(requireActivity())
+                    .setGraph(R.navigation.navigation)
+                    .setDestination(R.id.detailFragment)
+                    .setArguments(args)
+                    .setComponentName(MainActivity::class.java)
+                    .createPendingIntent()
+                    .send()*/
+            val args = Bundle()
+            args.putString(NEWS_ID, safeArgSendDataDetail.id.toString())
+            NavDeepLinkBuilder(requireContext())
+                .setGraph(R.navigation.navigation)
+                .setDestination(R.id.detailFragment)
+                .setArguments(args)
+                .createPendingIntent()
+                .send()
         }
-
         binding.epoxyRecyclerView.setController(epoxyController)
-//        binding.epoxyRecyclerView.addItemDecoration(DividerItemDecoration(requireActivity(), RecyclerView.VERTICAL))
-
-        // Observing changes to the underlying list of data
         epoxyController.isLoading = true
         viewModel.randomTabuData.observe(viewLifecycleOwner) { newsData ->
             epoxyController.newsList = newsData as ArrayList<RemoteData.Data.Haberler>
         }
         viewModel.getNewsData()
-
     }
 
+    companion object {
+        const val NEWS_ID = "id"
+    }
 
     override fun onDestroy() {
         super.onDestroy()

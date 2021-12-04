@@ -33,6 +33,9 @@
         <argument
             android:name="detailNews"
             app:argType="com.autumnsun.birtutamhaber.data.remote.model.RemoteData$Data$Haberler" />
+
+        <deepLink app:uri="https://www.birtutamhaber.com/detail/{id}" />
+
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"

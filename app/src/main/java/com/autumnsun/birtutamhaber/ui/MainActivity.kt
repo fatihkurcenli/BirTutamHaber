@@ -1,5 +1,6 @@
 package com.autumnsun.birtutamhaber.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -99,7 +100,11 @@ class MainActivity : AppCompatActivity() {
                 wantDisconnect = false
             }
         }
+    }
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        navController.handleDeepLink(intent)
     }
 
     override fun onDestroy() {
