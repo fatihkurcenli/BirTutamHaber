@@ -28,7 +28,12 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             activityViewModel.onAttractionSelected(attractionId)
             navController.navigate(R.id.action_homeFragment_to_attractionDetailFragment)
         }*/
-        val epoxyController = HomeEpoxyController(requireActivity())
+        val epoxyController = HomeEpoxyController(requireActivity()) { safeArgSendDataDetail ->
+ /*           navController.navigate(
+                R.id.action_homeFragment_to_detailFragment,
+                safeArgSendDataDetail
+            )*/
+        }
 
         binding.epoxyRecyclerView.setController(epoxyController)
 //        binding.epoxyRecyclerView.addItemDecoration(DividerItemDecoration(requireActivity(), RecyclerView.VERTICAL))

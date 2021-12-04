@@ -2,11 +2,12 @@ package com.autumnsun.birtutamhaber.data.remote.model
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class RemoteData(
     @SerializedName("data")
     val data: Data = Data()
-) {
+) : Serializable {
     data class Data(
         @SerializedName("haberler")
         val haberler: List<Haberler> = listOf(),

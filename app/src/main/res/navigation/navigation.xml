@@ -22,12 +22,17 @@
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.autumnsun.birtutamhaber.ui.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="newsDetail"
+            app:argType="com.autumnsun.birtutamhaber.data.remote.model.RemoteData" />
+    </fragment>
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.autumnsun.birtutamhaber.ui.category.CategoryFragment"

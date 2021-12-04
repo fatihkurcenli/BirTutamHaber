@@ -13,7 +13,10 @@ import com.bumptech.glide.Glide
  Created by Fatih Kurcenli on 12/4/2021
 */
 
-class HomeEpoxyController(val context: Context) : EpoxyController() {
+class HomeEpoxyController(
+    val context: Context,
+    private val onClickedCallback: (RemoteData.Data.Haberler) -> Unit
+) : EpoxyController() {
     var isLoading: Boolean = false
         set(value) {
             field = value
@@ -49,7 +52,7 @@ class HomeEpoxyController(val context: Context) : EpoxyController() {
 
 
         newsList.forEachIndexed { index, news ->
-            NewsModel(context, news).id(index).addTo(this)
+            NewsModel(context, news, onClickedCallback).id(index).addTo(this)
         }
 
     }
@@ -57,11 +60,15 @@ class HomeEpoxyController(val context: Context) : EpoxyController() {
 
     data class NewsModel(
         val context: Context,
-        val news: RemoteData.Data.Haberler
+        val news: RemoteData.Data.Haberler,
+        val onClicked: (RemoteData.Data.Haberler) -> Unit
     ) : ViewBindingKotlinModel<ModelNewsBinding>(R.layout.model_news) {
         override fun ModelNewsBinding.bind() {
             description.text = news.title
             Glide.with(context).load(news.newsImage).into(newsImage)
+            root.setOnClickListener {
+                onClicked(news)
+            }
         }
     }
 
