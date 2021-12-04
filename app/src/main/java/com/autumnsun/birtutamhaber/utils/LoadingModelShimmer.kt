@@ -7,11 +7,15 @@ import com.autumnsun.birtutamhaber.databinding.ModelLoadingShimmerBinding
  Created by Fatih Kurcenli on 12/4/2021
 */
 
-class LoadingEpoxyModel :
+class LoadingEpoxyModel(val shimmerStartStop: Boolean) :
     ViewBindingKotlinModel<ModelLoadingShimmerBinding>(R.layout.model_loading_shimmer) {
 
     override fun ModelLoadingShimmerBinding.bind() {
-        // nothing to do
+        if (shimmerStartStop) {
+            shimmer.startShimmer()
+        } else {
+            shimmer.stopShimmer()
+        }
     }
 
     override fun getSpanSize(totalSpanCount: Int, position: Int, itemCount: Int): Int {

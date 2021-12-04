@@ -39,7 +39,9 @@ object AppModule {
         })
         builder.addInterceptor(
             ChuckerInterceptor.Builder(context)
-                .collector(ChuckerCollector(context))
+                .collector(ChuckerCollector(context).apply {
+                    showNotification = false
+                })
                 .maxContentLength(250000L)
                 .redactHeaders(emptySet())
                 .alwaysReadResponseBody(false)
