@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         appBarConfiguration = AppBarConfiguration(
-            topLevelDestinationIds = setOf(R.id.homeFragment,R.id.categoryFragment),
+            topLevelDestinationIds = setOf(R.id.homeFragment, R.id.writersFragment),
             binding.drawerLayout
         )
         setupActionBarWithNavController(
@@ -78,9 +78,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.bottom_nav_menu, menu)
         binding.bottomNavView.setupWithNavController(menu!!, navController)
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onBackPressed() {

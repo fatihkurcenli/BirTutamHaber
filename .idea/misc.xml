@@ -7,8 +7,13 @@
         <entry key="..\:/Users/fatih/Documents/birtutamhaber/app/src/main/res/drawable/ic_home.xml" value="0.3828125" />
         <entry key="..\:/Users/fatih/Documents/birtutamhaber/app/src/main/res/drawable/ic_news_home.xml" value="0.25" />
         <entry key="..\:/Users/fatih/Documents/birtutamhaber/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/fatih/Documents/birtutamhaber/app/src/main/res/layout/fragment_category.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/fatih/Documents/birtutamhaber/app/src/main/res/layout/fragment_detail.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/fatih/Documents/birtutamhaber/app/src/main/res/layout/fragment_home.xml" value="0.23385416666666667" />
+        <entry key="..\:/Users/fatih/Documents/birtutamhaber/app/src/main/res/layout/fragment_splash.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/fatih/Documents/birtutamhaber/app/src/main/res/layout/fragment_writers.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/fatih/Documents/birtutamhaber/app/src/main/res/layout/model_loading.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/fatih/Documents/birtutamhaber/app/src/main/res/layout/model_loading_shimmer.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/fatih/Documents/birtutamhaber/app/src/main/res/menu/bottom_nav_menu.xml" value="0.23385416666666667" />
         <entry key="..\:/Users/fatih/Documents/birtutamhaber/app/src/main/res/menu/nav_drawer.xml" value="0.23385416666666667" />
       </map>

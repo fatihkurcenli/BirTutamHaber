@@ -6,7 +6,7 @@
             android:icon="@drawable/ic_news"
             android:title="@string/news" />
         <item
-            android:id="@+id/detailFragment"
+            android:id="@+id/writersFragment"
             android:icon="@drawable/ic_news_writer"
             android:title="@string/writer" />
     </group>

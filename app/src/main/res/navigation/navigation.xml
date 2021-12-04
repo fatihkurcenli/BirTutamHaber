@@ -33,4 +33,10 @@
         android:name="com.autumnsun.birtutamhaber.ui.category.CategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/writersFragment"
+        android:name="com.autumnsun.birtutamhaber.ui.writers.WritersFragment"
+        android:label="Yazarlar"
+        tools:layout="@layout/fragment_writers" />
+
 </navigation>
