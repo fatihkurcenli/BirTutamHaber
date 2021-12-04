@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grayColorForLoading">#DDDDDDDD</color>
 
+    <color name="backgroundColor">#DADDE2</color>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Context
 import com.autumnsun.birtutamhaber.data.remote.NewsApi
 import com.autumnsun.birtutamhaber.ui.detail.DetailRepository
 import com.autumnsun.birtutamhaber.ui.home.HomeRepository
+import com.autumnsun.birtutamhaber.ui.writers.WriterRepository
 import com.autumnsun.birtutamhaber.utils.Constants.BASE_URL
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
@@ -68,6 +69,12 @@ object AppModule {
     @Provides
     fun provideDetailNewsRepo(newsApi: NewsApi): DetailRepository {
         return DetailRepository(newsApi)
+    }
+
+    @Singleton
+    @Provides
+    fun provideWriterRepo(newsApi: NewsApi): WriterRepository {
+        return WriterRepository(newsApi)
     }
 
 }

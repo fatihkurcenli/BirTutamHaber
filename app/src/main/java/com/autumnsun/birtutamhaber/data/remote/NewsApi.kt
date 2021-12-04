@@ -17,4 +17,7 @@ interface NewsApi {
 
     @GET("/data/haberler/{id}.json")
     suspend fun getOneNews(@Path("id") id: Int): Response<RemoteData.Data.Haberler>
+
+    @GET("/data/.json")
+    suspend fun getAllWriters(): Response<RemoteData.Data>
 }

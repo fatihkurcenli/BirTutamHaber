@@ -2,8 +2,8 @@ package com.autumnsun.birtutamhaber.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import nl.joery.animatedbottombar.AnimatedBottomBar
 
 
 @AndroidEntryPoint
@@ -50,8 +49,6 @@ class MainActivity : AppCompatActivity() {
             navController = navController,
             configuration = appBarConfiguration
         )
-
-        setupBottomNavMenu(navController)
         setupNavigationMenu(navController)
     }
 
@@ -63,21 +60,14 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setupWithNavController(navController)
     }
 
-    private fun setupBottomNavMenu(navController: NavController) {
-        binding.bottomNavView.setOnTabSelectListener(object :
-            AnimatedBottomBar.OnTabSelectListener {
-            override fun onTabSelected(
-                lastIndex: Int,
-                lastTab: AnimatedBottomBar.Tab?,
-                newIndex: Int,
-                newTab: AnimatedBottomBar.Tab
-            ) {
-                Log.d("select", lastIndex.toString())
-            }
-
-        })
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.homeFragment -> navController.navigate(R.id.homeFragment)
+            R.id.writersFragment -> navController.navigate(R.id.writersFragment)
+        }
+        return super.onOptionsItemSelected(item)
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.bottom_nav_menu, menu)

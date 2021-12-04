@@ -17,12 +17,13 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(val newsRepo: HomeRepository) : ViewModel() {
 
-    private val _tabuData = MutableLiveData<List<RemoteData.Data.Haberler>>()
-    val randomTabuData: LiveData<List<RemoteData.Data.Haberler>> = _tabuData
+    private val _homeNews = MutableLiveData<List<RemoteData.Data.Haberler>>()
+    val homeNews: LiveData<List<RemoteData.Data.Haberler>> = _homeNews
 
     fun getNewsData() = viewModelScope.launch(Dispatchers.IO) {
         val responseData = newsRepo.getNewsData()
-        _tabuData.postValue(responseData)
+        if (responseData.isNotEmpty()) {
+            _homeNews.postValue(responseData)
+        }
     }
-
 }

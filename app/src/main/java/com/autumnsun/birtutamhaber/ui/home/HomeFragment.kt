@@ -50,7 +50,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         }
         binding.epoxyRecyclerView.setController(epoxyController)
         epoxyController.isLoading = true
-        viewModel.randomTabuData.observe(viewLifecycleOwner) { newsData ->
+        viewModel.homeNews.observe(viewLifecycleOwner) { newsData ->
             epoxyController.newsList = newsData as ArrayList<RemoteData.Data.Haberler>
         }
 

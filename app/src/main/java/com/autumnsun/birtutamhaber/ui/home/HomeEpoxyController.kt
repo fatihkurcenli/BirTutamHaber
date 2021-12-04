@@ -54,14 +54,6 @@ class HomeEpoxyController(
             return
         }
 
-        /*       HeaderEpoxyModel("Recently Viewed").id("header_1").addTo(this)
-               firstGroup.forEach { attraction ->
-                   AttractionEpoxyModel(attraction, onClickedCallback)
-                       .id(attraction.id)
-                       .addTo(this)
-               }*/
-
-
         newsList.forEachIndexed { index, news ->
             NewsModel(context, news, onClickedCallback).id(
                 news.id
@@ -70,8 +62,6 @@ class HomeEpoxyController(
                 AppsRate(context).id("app_rate").addTo(this)
             }
         }
-
-
     }
 
 
