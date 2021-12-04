@@ -13,7 +13,7 @@ data class RemoteData(
         val haberler: List<Haberler> = listOf(),
         @SerializedName("yazarlar")
         val yazarlar: List<Yazarlar> = listOf()
-    ) {
+    ) : Serializable {
         data class Haberler(
             @SerializedName("deeplink")
             val deeplink: String = "",
@@ -27,7 +27,7 @@ data class RemoteData(
             val title: String = "",
             @SerializedName("writer")
             val writer: String = ""
-        )
+        ) : Serializable
 
         data class Yazarlar(
             @SerializedName("id")
@@ -36,6 +36,6 @@ data class RemoteData(
             val writer: String = "",
             @SerializedName("writer_image")
             val writerImage: String = ""
-        )
+        ) : Serializable
     }
 }

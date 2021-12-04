@@ -29,10 +29,16 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             navController.navigate(R.id.action_homeFragment_to_attractionDetailFragment)
         }*/
         val epoxyController = HomeEpoxyController(requireActivity()) { safeArgSendDataDetail ->
- /*           navController.navigate(
-                R.id.action_homeFragment_to_detailFragment,
-                safeArgSendDataDetail
-            )*/
+            val navDirectionAction =
+                HomeFragmentDirections.actionHomeFragmentToDetailFragment(safeArgSendDataDetail)
+            navController.navigate(navDirectionAction)
+/*            *//*     val action =
+                     HomeFragmentDirections.actionHomeFragmentToDetailFragment(")*//*
+            navController.navigate(action)
+            *//*           navController.navigate(
+                           R.id.action_homeFragment_to_detailFragment,
+                           safeArgSendDataDetail
+                       )*/
         }
 
         binding.epoxyRecyclerView.setController(epoxyController)
