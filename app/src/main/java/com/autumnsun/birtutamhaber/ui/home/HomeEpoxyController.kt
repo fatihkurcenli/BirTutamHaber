@@ -50,7 +50,7 @@ class HomeEpoxyController(
         }
 
         if (newsList.isEmpty()) {
-            // todo show empty state
+            // todo show empty stateD
             return
         }
 
@@ -93,5 +93,6 @@ class HomeEpoxyController(
             }
         }
     }
+
 
 }

@@ -6,15 +6,6 @@
     app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.autumnsun.birtutamhaber.ui.splash.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash">
-        <action
-            android:id="@+id/action_splashFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/homeFragment"
         android:name="com.autumnsun.birtutamhaber.ui.home.HomeFragment"
         android:label="Bir Tutam Haber"
@@ -22,7 +13,11 @@
 
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/fade_slide_right"
+            app:exitAnim="@anim/fade_slide_right"
+            app:popEnterAnim="@anim/slide_out_left"
+            app:popExitAnim="@anim/fade_slide_left" />
 
     </fragment>
     <fragment

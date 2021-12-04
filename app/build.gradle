@@ -6,6 +6,10 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 android {
     compileSdk 30
 

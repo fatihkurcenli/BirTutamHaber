@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavDeepLinkBuilder
 import com.autumnsun.birtutamhaber.R
 import com.autumnsun.birtutamhaber.data.remote.model.RemoteData
 import com.autumnsun.birtutamhaber.databinding.FragmentHomeBinding
@@ -26,10 +25,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
         val epoxyController = HomeEpoxyController(requireActivity()) { safeArgSendDataDetail ->
             //TODO If you are using safe args open this
-            /*        val navDirectionAction =
-                        HomeFragmentDirections.actionHomeFragmentToDetailFragment(safeArgSendDataDetail)
-                    navController.navigate(navDirectionAction)*/
+            val navDirectionAction =
+                HomeFragmentDirections.actionHomeFragmentToDetailFragment(safeArgSendDataDetail)
+            navController.navigate(navDirectionAction)
             //TODO If you want deep link send use this commands!!
+            //This intent rebuild project use for notification!!
             /*    val args = Bundle()
                 args.putSerializable(NEWS_ID, 3)
                 NavDeepLinkBuilder(requireActivity())
@@ -39,14 +39,14 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                     .setComponentName(MainActivity::class.java)
                     .createPendingIntent()
                     .send()*/
-            val args = Bundle()
-            args.putString(NEWS_ID, safeArgSendDataDetail.id.toString())
-            NavDeepLinkBuilder(requireContext())
-                .setGraph(R.navigation.navigation)
-                .setDestination(R.id.detailFragment)
-                .setArguments(args)
-                .createPendingIntent()
-                .send()
+            /* val args = Bundle()
+             args.putString(NEWS_ID, safeArgSendDataDetail.id.toString())
+             NavDeepLinkBuilder(requireContext())
+                 .setGraph(R.navigation.navigation)
+                 .setDestination(R.id.detailFragment)
+                 .setArguments(args)
+                 .createPendingIntent()
+                 .send()*/
         }
         binding.epoxyRecyclerView.setController(epoxyController)
         epoxyController.isLoading = true

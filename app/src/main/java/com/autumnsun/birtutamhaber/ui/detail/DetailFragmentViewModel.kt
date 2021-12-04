@@ -23,11 +23,12 @@ class DetailFragmentViewModel @Inject constructor(
 
 
     //TODO If you are using safe args open this
-    /*   fun setDetailNewsWithArgs(newsDetail: RemoteData.Data.Haberler) =
-           viewModelScope.launch(Dispatchers.IO) {
-               _detailNews.postValue(newsDetail)
-           }*/
+    fun setDetailNewsWithArgs(newsDetail: RemoteData.Data.Haberler) =
+        viewModelScope.launch(Dispatchers.IO) {
+            _detailNews.postValue(newsDetail)
+        }
 
+    //TODO If you are using pedding Intent open this
     fun getIdNews(id: Int = 0) = viewModelScope.launch(Dispatchers.IO) {
         val data = detailRepository.getOneNews(id)
         _detailNews.postValue(data)
