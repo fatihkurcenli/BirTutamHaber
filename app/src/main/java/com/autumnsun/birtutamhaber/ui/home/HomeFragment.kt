@@ -3,11 +3,15 @@ package com.autumnsun.birtutamhaber.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDeepLinkBuilder
 import com.autumnsun.birtutamhaber.R
 import com.autumnsun.birtutamhaber.data.remote.model.RemoteData
 import com.autumnsun.birtutamhaber.databinding.FragmentHomeBinding
 import com.autumnsun.birtutamhaber.ui.BaseFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class HomeFragment : BaseFragment(R.layout.fragment_home) {
@@ -49,6 +53,15 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         viewModel.randomTabuData.observe(viewLifecycleOwner) { newsData ->
             epoxyController.newsList = newsData as ArrayList<RemoteData.Data.Haberler>
         }
+
+        lifecycleScope.launch(Dispatchers.Main) {
+            delay(3000L)
+            if (!mainActivity.seeAppRate) {
+                epoxyController.seeAppRate = true
+                mainActivity.seeAppRate = true
+            }
+        }
+
         viewModel.getNewsData()
     }
 

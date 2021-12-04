@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     //private lateinit var appBarConfiguration: AppBarConfiguration
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
+    var seeAppRate = false
 
     //val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {

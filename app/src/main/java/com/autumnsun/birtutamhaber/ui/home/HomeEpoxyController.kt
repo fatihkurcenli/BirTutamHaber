@@ -1,9 +1,11 @@
 package com.autumnsun.birtutamhaber.ui.home
 
+import android.app.AlertDialog
 import android.content.Context
 import com.airbnb.epoxy.EpoxyController
 import com.autumnsun.birtutamhaber.R
 import com.autumnsun.birtutamhaber.data.remote.model.RemoteData
+import com.autumnsun.birtutamhaber.databinding.ModelAppsFineBinding
 import com.autumnsun.birtutamhaber.databinding.ModelNewsBinding
 import com.autumnsun.birtutamhaber.utils.LoadingEpoxyModel
 import com.autumnsun.birtutamhaber.utils.ViewBindingKotlinModel
@@ -24,6 +26,15 @@ class HomeEpoxyController(
                 requestModelBuild()
             }
         }
+
+    var seeAppRate: Boolean = false
+        set(value) {
+            field = value
+            if (field) {
+                requestModelBuild()
+            }
+        }
+
 
     var newsList = ArrayList<RemoteData.Data.Haberler>()
         set(value) {
@@ -52,8 +63,14 @@ class HomeEpoxyController(
 
 
         newsList.forEachIndexed { index, news ->
-            NewsModel(context, news, onClickedCallback).id(index).addTo(this)
+            NewsModel(context, news, onClickedCallback).id(
+                news.id
+            ).addTo(this)
+            if (index == 1 && seeAppRate) {
+                AppsRate(context).id("app_rate").addTo(this)
+            }
         }
+
 
     }
 
@@ -68,6 +85,21 @@ class HomeEpoxyController(
             Glide.with(context).load(news.newsImage).into(newsImage)
             root.setOnClickListener {
                 onClicked(news)
+            }
+        }
+    }
+
+
+    data class AppsRate(val context: Context) :
+        ViewBindingKotlinModel<ModelAppsFineBinding>(R.layout.model_apps_fine) {
+        override fun ModelAppsFineBinding.bind() {
+            closeRate.setOnClickListener {
+                val dialogBuilder =
+                    AlertDialog.Builder(context)
+                dialogBuilder.setTitle("Beğenmedin mi :(")
+                dialogBuilder.setMessage("Beğenmediysen bunu bize neden olduğunu iletir misin ?")
+                dialogBuilder.create()
+                dialogBuilder.show()
             }
         }
     }

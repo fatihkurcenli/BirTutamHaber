@@ -1,7 +1,6 @@
 package com.autumnsun.birtutamhaber.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.autumnsun.birtutamhaber.R
@@ -20,15 +19,13 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDetailBinding.bind(view)
-
         val id = arguments?.getString(HomeFragment.NEWS_ID)
-
-        Log.d("gettingId", id.toString())
         //TODO If you are using safe args open this
         /* safeArgs.let {
              viewModel.setDetailNewsWithArgs(it.detailNews)
          }*/
-        id?.let { viewModel.getIdNews(it.toInt() - 1) }
+        //if id getting null getting default value on viewModel!!
+        id?.let { viewModel.getIdNews(it.toInt() - 1) } ?: viewModel.getIdNews()
 
         val detailController = DetailEpoxyController(requireActivity())
         binding.epoxyRecyclerView.setController(detailController)
