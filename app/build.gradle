@@ -2,17 +2,17 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'androidx.navigation.safeargs'
+    id 'androidx.navigation.safeargs.kotlin'
     id 'dagger.hilt.android.plugin'
 }
 
 android {
-    compileSdk 31
+    compileSdk 30
 
     defaultConfig {
         applicationId "com.autumnsun.birtutamhaber"
         minSdk 21
-        targetSdk 31
+        targetSdk 30
         versionCode 1
         versionName "1.0"
 
@@ -54,8 +54,8 @@ dependencies {
 
 
     // Navigation Components
-    implementation "androidx.navigation:navigation-fragment-ktx:2.4.0-beta02"
-    implementation "androidx.navigation:navigation-ui-ktx:2.4.0-beta02"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
 
     //Dagger - Hilt
     implementation "com.google.dagger:hilt-android:2.37"
@@ -85,11 +85,11 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-scalars:2.9.0"
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.9.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    debugImplementation "com.github.chuckerteam.chucker:library:3.4.0"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.4.0"
 
     implementation 'nl.joery.animatedbottombar:library:1.1.0'
-
-    //pagination
-    implementation "androidx.paging:paging-runtime-ktx:3.1.0"
 
     //data-store
     implementation "androidx.datastore:datastore-preferences:1.0.0"

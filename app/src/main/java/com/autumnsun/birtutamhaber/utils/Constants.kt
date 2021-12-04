@@ -8,5 +8,5 @@ package com.autumnsun.birtutamhaber.utils
 
 
 object Constants {
-    const val BASE_URL = ""
+    const val BASE_URL = "https://birtutamhaberr-default-rtdb.europe-west1.firebasedatabase.app"
 }

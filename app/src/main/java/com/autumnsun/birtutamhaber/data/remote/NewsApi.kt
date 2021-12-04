@@ -1,5 +1,6 @@
 package com.autumnsun.birtutamhaber.data.remote
 
+import com.autumnsun.birtutamhaber.data.remote.model.RemoteData
 import retrofit2.http.GET
 
 
@@ -11,6 +12,6 @@ import retrofit2.http.GET
 
 interface NewsApi {
 
-    @GET("/news")
-    suspend fun getNews():SimpleResponse
+    @GET("/.json")
+    suspend fun getNews(): SimpleResponse<RemoteData>
 }

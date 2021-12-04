@@ -1,11 +1,16 @@
 package com.autumnsun.birtutamhaber.di
 
+import android.content.Context
 import com.autumnsun.birtutamhaber.data.remote.NewsApi
+import com.autumnsun.birtutamhaber.ui.home.HomeRepository
 import com.autumnsun.birtutamhaber.utils.Constants.BASE_URL
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,18 +32,33 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideNewsApi(): NewsApi {
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-            .setLevel(HttpLoggingInterceptor.Level.BODY)
-        val client = OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
-            .build()
+    fun provideNewsApi(@ApplicationContext context: Context): NewsApi {
+        val builder = OkHttpClient.Builder()
+        builder.addInterceptor(HttpLoggingInterceptor().apply {
+            setLevel(HttpLoggingInterceptor.Level.BODY)
+        })
+        builder.addInterceptor(
+            ChuckerInterceptor.Builder(context)
+                .collector(ChuckerCollector(context))
+                .maxContentLength(250000L)
+                .redactHeaders(emptySet())
+                .alwaysReadResponseBody(false)
+                .build()
+        )
+        builder.build()
+
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(client)
+            .client(builder.build())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(NewsApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideNewsRepo(newsApi: NewsApi): HomeRepository {
+        return HomeRepository(newsApi)
     }
 
 
