@@ -58,7 +58,7 @@ class HomeEpoxyController(
             NewsModel(context, news, onClickedCallback).id(
                 news.id
             ).addTo(this)
-            if (index == 1 && seeAppRate) {
+            if (index == 0 && seeAppRate) {
                 AppsRate(context).id("app_rate").addTo(this)
             }
         }

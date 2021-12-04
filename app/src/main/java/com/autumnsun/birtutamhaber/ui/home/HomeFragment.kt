@@ -55,7 +55,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         }
 
         lifecycleScope.launch(Dispatchers.Main) {
-            delay(3000L)
+            delay(5000L)
             if (!mainActivity.seeAppRate) {
                 epoxyController.seeAppRate = true
                 mainActivity.seeAppRate = true
