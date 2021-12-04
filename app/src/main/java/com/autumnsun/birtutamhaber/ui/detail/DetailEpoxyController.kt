@@ -5,7 +5,9 @@ import com.airbnb.epoxy.EpoxyController
 import com.autumnsun.birtutamhaber.R
 import com.autumnsun.birtutamhaber.data.remote.model.RemoteData
 import com.autumnsun.birtutamhaber.databinding.ModelDetailBinding
+import com.autumnsun.birtutamhaber.utils.LoadingEpoxyModel
 import com.autumnsun.birtutamhaber.utils.ViewBindingKotlinModel
+import com.bumptech.glide.Glide
 
 /*
  Created by Fatih Kurcenli on 12/4/2021
@@ -28,6 +30,15 @@ class DetailEpoxyController(val context: Context) : EpoxyController() {
         }
 
     override fun buildModels() {
+        if (isLoading) {
+            LoadingEpoxyModel(isLoading).id("loading_state").addTo(this)
+            return
+        }
+
+    /*    if (detailNews.) {
+            // todo show empty state
+            return
+        }*/
         DetailModel(context, detailNews).id("detail_scren").addTo(this)
     }
 
@@ -36,11 +47,11 @@ class DetailEpoxyController(val context: Context) : EpoxyController() {
         val detailNews: RemoteData.Data.Haberler,
     ) : ViewBindingKotlinModel<ModelDetailBinding>(R.layout.model_detail) {
         override fun ModelDetailBinding.bind() {
-            /*description.text = news.title
-            Glide.with(context).load(news.newsImage).into(newsImage)
-            root.setOnClickListener {
-                onClicked(news)
-            }*/
+            descriptionTitle.text = detailNews.title
+            fullDescription.text = detailNews.description
+            detailNews.newsImage.let {
+                Glide.with(context).load(detailNews.newsImage).into(detailImage)
+            }
         }
     }
 }

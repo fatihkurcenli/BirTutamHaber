@@ -10,22 +10,26 @@ import com.autumnsun.birtutamhaber.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 
-@AndroidEntryPoint
 class DetailFragment : BaseFragment(R.layout.fragment_detail) {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
     private val safeArgs: DetailFragmentArgs by navArgs()
     private val viewModel: DetailFragmentViewModel by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentDetailBinding.bind(view)
         safeArgs.let {
             viewModel.setDetailNewsWithArgs(it.detailNews)
         }
-        
+
         val detailController = DetailEpoxyController(requireActivity())
         binding.epoxyRecyclerView.setController(detailController)
         viewModel.detailNews.observe(viewLifecycleOwner) {
             detailController.detailNews = it
+            mainActivity.supportActionBar?.let { actionBar ->
+                actionBar.title = it.title
+            }
         }
     }
 

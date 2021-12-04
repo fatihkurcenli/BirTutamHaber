@@ -8,15 +8,14 @@ import com.autumnsun.birtutamhaber.data.remote.model.RemoteData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
+import javax.inject.Inject
 
 /*
  Created by Fatih Kurcenli on 12/4/2021
 */
 
-
 @HiltViewModel
-class DetailFragmentViewModel : ViewModel() {
+class DetailFragmentViewModel @Inject constructor() : ViewModel() {
     private val _detailNews = MutableLiveData<RemoteData.Data.Haberler>()
     val detailNews: LiveData<RemoteData.Data.Haberler> = _detailNews
 

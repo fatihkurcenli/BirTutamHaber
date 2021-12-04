@@ -9,7 +9,7 @@ import com.autumnsun.birtutamhaber.databinding.FragmentHomeBinding
 import com.autumnsun.birtutamhaber.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+
 class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private var _binding: FragmentHomeBinding? = null

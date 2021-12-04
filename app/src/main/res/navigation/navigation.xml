@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.autumnsun.birtutamhaber.ui.detail.DetailFragment"
-        android:label="fragment_detail"
+        android:label="Haber Detayı"
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="detailNews"
